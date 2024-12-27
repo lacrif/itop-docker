@@ -1,0 +1,43 @@
+services:
+
+  itop:
+    image: 'lacrif/itop:3.2.0'
+    restart: 'always'
+    hostname: itop
+    ports:
+      - '80:80'
+      - '443:443'
+    volumes:
+      - 'itop_conf:/var/www/itop/conf'
+      - 'itop_data:/var/www/itop/data'
+      - 'itop_extensions:/var/www/itop/extensions'
+      - 'itop_env_production:/var/www/itop/env-production'
+    environment:
+      PHP_TIMEZONE: 'Europe/Paris'
+      PHP_ENABLE_UPLOADS: 'On'
+      PHP_MAX_EXECUTION_TIME: '600'
+      PHP_MEMORY_LIMIT: '128M'
+      PHP_POST_MAX_SIZE: '16M'
+      PHP_UPLOAD_MAX_FILESIZE: '2M'
+      PHP_MAX_FILE_UPLOADS: '20'
+      PHP_MAX_INPUT_TIME: '300'
+
+  db:
+    image: 'mariadb:11.3'
+    restart: 'always'
+    ports:
+      - '3306:3306'
+    environment:
+      MARIADB_DATABASE: 'itop'
+      MARIADB_USER: 'itop'
+      MARIADB_PASSWORD: 'itop'
+      MARIADB_ROOT_PASSWORD: 'password'
+    volumes:
+      - 'db_data:/var/lib/mysql'
+
+volumes:
+  itop_conf:
+  itop_data:
+  itop_extensions:
+  itop_env_production:
+  db_data:
