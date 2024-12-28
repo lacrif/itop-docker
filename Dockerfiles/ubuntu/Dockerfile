@@ -43,7 +43,7 @@ RUN a2enmod ssl
 RUN a2enmod headers
 
 # Get iTop and fix rights
-RUN curl -k -SL -o /tmp/itop.zip ${ITOP_DOWNLOAD_URL}
+RUN curl -SL -o /tmp/itop.zip ${ITOP_DOWNLOAD_URL}
 RUN unzip /tmp/itop.zip "web/*" -d /var/www/itop
 RUN rm -f /tmp/itop.zip
 RUN mv /var/www/itop/web/*  /var/www/itop
