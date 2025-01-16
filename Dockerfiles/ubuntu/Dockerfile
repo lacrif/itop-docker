@@ -2,7 +2,7 @@
 ARG ITOP_VERSION=3.2.0
 ARG ITOP_DOWNLOAD_URL=https://sourceforge.net/projects/itop/files/itop/3.2.0-2/iTop-3.2.0-2-14758.zip/download
 
-FROM ubuntu/apache2:2.4-24.04_beta
+FROM ubuntu:24.04
 
 ARG ITOP_VERSION
 ARG ITOP_DOWNLOAD_URL
@@ -18,7 +18,8 @@ LABEL org.opencontainers.image.authors="lacrif" \
 
 # Install system dependencies
 RUN apt-get update
-RUN apt-get install -y curl zip unzip supervisor graphviz libapache2-mod-php
+RUN apt-get install -y curl zip unzip supervisor graphviz 
+RUN apt-get install -y apache2 libapache2-mod-php
 RUN apt-get install -y php php-mysql php-cli php-json php-xml php-gd php-zip php-curl php-soap php-mbstring php-apcu php-ldap php-imap 
 ENV PHP_INI_DIR=/etc/php/8.3/cli
 
@@ -59,4 +60,4 @@ COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 ENTRYPOINT [ "docker-entrypoint.sh" ]
 
-CMD ["apache2-foreground"]
+CMD ["/usr/sbin/apachectl", "-D", "FOREGROUND"]
