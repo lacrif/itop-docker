@@ -10,8 +10,10 @@ services:
     volumes:
       - 'itop_conf:/var/www/itop/conf'
       - 'itop_data:/var/www/itop/data'
-      - 'itop_extensions:/var/www/itop/extensions'
       - 'itop_env_production:/var/www/itop/env-production'
+      - './build/extensions:/var/www/itop/extensions'
+      - './build/toolkit:/var/www/itop/toolkit'
+
     environment:
       PHP_TIMEZONE: 'Europe/Paris'
       PHP_ENABLE_UPLOADS: 'On'
@@ -36,8 +38,8 @@ services:
       - 'db_data:/var/lib/mysql'
 
 volumes:
-  itop_conf:
-  itop_data:
-  itop_extensions:
-  itop_env_production:
-  db_data:
+ itop_conf:
+ itop_data:
+ itop_extensions:
+ itop_env_production:
+ db_data:
