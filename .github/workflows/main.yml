@@ -37,4 +37,4 @@ jobs:
           tags: lacrif/itop:${{ matrix.itop_version }}
           build-args: |
             ITOP_VERSION=${{ matrix.itop_version }}
-            ITOP_DOWNLOAD_URL=${{ matrix.itop_version }}
+            ITOP_DOWNLOAD_URL=${{ matrix.itop_download_url }}

@@ -1,7 +1,7 @@
 services:
 
   itop:
-    image: 'lacrif/itop:3.2.0'
+    image: 'lacrif/itop:3.2'
     restart: 'always'
     hostname: itop
     ports:
