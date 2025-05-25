@@ -1,6 +1,6 @@
 #vars
-ITOP_IMAGETAG=3.2.0
-ITOP_DOWNLOAD_URL=https://sourceforge.net/projects/itop/files/itop/${ITOP_IMAGETAG}-2/iTop-${ITOP_IMAGETAG}-2-14758.zip/download
+ITOP_IMAGETAG=3.2
+ITOP_DOWNLOAD_URL=https://sourceforge.net/projects/itop/files/itop/3.2.1-1/iTop-3.2.1-1-16749.zip/download
 ITOP_IMAGEFULLNAME=lacrif/itop:${ITOP_IMAGETAG}
 
 .PHONY: help build compose-up compose-down clean all

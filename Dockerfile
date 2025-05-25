@@ -1,6 +1,6 @@
 # syntax=docker/dockerfile:1
-ARG ITOP_VERSION=3.2.0
-ARG ITOP_DOWNLOAD_URL=https://sourceforge.net/projects/itop/files/itop/3.2.0-2/iTop-3.2.0-2-14758.zip/download
+ARG ITOP_VERSION=3.2
+ARG ITOP_DOWNLOAD_URL=https://sourceforge.net/projects/itop/files/itop/3.2.1-1/iTop-3.2.1-1-16749.zip/download
 
 FROM ubuntu:24.04
 
