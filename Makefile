@@ -3,15 +3,15 @@ ITOP_IMAGETAG=3.2.0
 ITOP_DOWNLOAD_URL=https://sourceforge.net/projects/itop/files/itop/${ITOP_IMAGETAG}-2/iTop-${ITOP_IMAGETAG}-2-14758.zip/download
 ITOP_IMAGEFULLNAME=lacrif/itop:${ITOP_IMAGETAG}
 
-.PHONY: help build push all
+.PHONY: help build compose-up compose-down clean all
 
 help:
 	@echo "Makefile commands:"
 	@echo "build"
-	@echo "push"
 	@echo "compose-up"
 	@echo "compose-down"
-	@echo "all"
+	@echo "clean"
+	@echo "all: build compose-up"
 
 .DEFAULT_GOAL := all
 
@@ -24,7 +24,7 @@ clean: version-check
 
 build: clean
 	@echo "+ $@"
-	@docker build Dockerfiles/ubuntu \
+	@docker build . \
 	--tag ${ITOP_IMAGEFULLNAME} \
 	--build-arg ITOP_VERSION="${ITOP_IMAGETAG}" \
 	--build-arg ITOP_DOWNLOAD_URL="${ITOP_DOWNLOAD_URL}"
@@ -35,9 +35,6 @@ compose-up:
 compose-down:
 	@docker compose down
 
-push:
-	@docker push ${ITOP_IMAGEFULLNAME}
-
 version-check:
 	@echo "+ $@"
 	@if [ -z "${ITOP_IMAGETAG}" ]; then \
@@ -47,5 +44,5 @@ version-check:
 		echo "VERSION is ${ITOP_IMAGETAG}"; \
 	fi
 
-all: image push
+all: build compose-up
 

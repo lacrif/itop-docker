@@ -37,7 +37,7 @@ RUN sed -ri \
         "/etc/apache2/conf-available/other-vhosts-access-log.conf"
 
 # Copy config
-COPY ["conf/etc/", "/etc/"]
+COPY ["Dockerfiles/conf/etc/", "/etc/"]
 
 # Enable Apache mods
 RUN a2enmod ssl
@@ -56,7 +56,7 @@ RUN chown -R www-data:www-data /var/www/itop
 WORKDIR /var/www/itop
 
 # Set custom entrypoint
-COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
+COPY Dockerfiles/docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 ENTRYPOINT [ "docker-entrypoint.sh" ]
 
